@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+  div{
+    height: 400px;
+    width: 400px;
+    border: 2px solid gray;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    background-color: rgb(11, 232, 213);
+  }
+  input{
+    margin-left: 120px;
+    margin-top: 150px;
+      height: 40px;
+      width: 180px;
+      border: 2px solid orange;
+      border-radius: 5px;
+      background-color:rgb(243, 239, 227);
+  }
+  
+  button{
+    margin-top: 15px;
+    margin-left: 153px;
+    border: 3px solid orange;
+    background-color: black;
+    color: aliceblue;
+    height: 50px;
+    width: 100px;
+    border-radius: 5px;
+
+  }
+  button:hover{
+    background-color:rgb(240, 175, 226);
+    color: black;
+    border:2px solid black;
+  }
+  h1{
+    text-align: center;
+    color: deeppink;
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 900;
+  }
+  
+  
+    </style>
+</head>
+<body>
+    <h1>ALARAM CLOCK</h1>
+    <div>
+        
+    <input type="datetime-local" id="alaramInput"><br><button onclick="alaram()">Set Alaram</button>
+    <!-- <button id =" alaramInput" onclick="stop()">Stop Alaram</button> -->
+  
+  </div>
+    <script>
+
+var audio=new Audio('https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3');
+  function alaram(){
+
+  var alaramInput=document.getElementById("alaramInput");
+  var alaramDate=new Date(alaramInput.value);
+  console.log(`Setting alaram for ${alaramDate}`);
+   var currentDate=new Date();
+   var timeToAlaram=(alaramDate-currentDate);
+   console.log("alaram is ringing after "+timeToAlaram+" milliseconds");
+   if(timeToAlaram>=0){
+    setInterval(()=>{
+   ringBell();
+    },timeToAlaram)
+   }
+  }
+
+  function ringBell(){
+    
+    //console.log("alaram ringing now.....")
+            audio.play();
+            console.log("audio played......")
+  }
+  
+  // function stop(){
+  //   audio.pause();
+  //   audio.currentTime=0;
+  //   console.log("audio stoped.....")
+  // }
+  
+    </script>
+</body>
+</html>
